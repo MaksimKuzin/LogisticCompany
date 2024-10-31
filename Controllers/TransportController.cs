@@ -8,7 +8,7 @@ namespace LogisticCompany.Controllers
         LCDBContext _db = new LCDBContext();
         public IActionResult Index()
         {
-            var model = _db.Tranports.AsEnumerable();
+            var model = _db.Transports.AsEnumerable();
             return View("TransportsList", model);
         }
         public IActionResult Create()
@@ -20,27 +20,27 @@ namespace LogisticCompany.Controllers
         public IActionResult Create(Tranport tranport, string registrationDate)
         {
             tranport.RegistrationDate = DateOnly.Parse(registrationDate);
-            _db.Tranports.Add(tranport);
+            _db.Transports.Add(tranport);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
         {
-            var model = _db.Tranports.FirstOrDefault(x => x.Id == id);
+            var model = _db.Transports.FirstOrDefault(x => x.Id == id);
             return View("CreateOrUpdate", model);
         }
         [HttpPost]
         public IActionResult Edit(Tranport tranport, string registrationDate)
         {
             tranport.RegistrationDate = DateOnly.Parse(registrationDate);
-            _db.Tranports.Update(tranport);
+            _db.Transports.Update(tranport);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
-            var transport = _db.Tranports.FirstOrDefault(x => x.Id == id);
-            _db.Tranports.Remove(transport);
+            var transport = _db.Transports.FirstOrDefault(x => x.Id == id);
+            _db.Transports.Remove(transport);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

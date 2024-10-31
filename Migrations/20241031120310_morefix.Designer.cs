@@ -4,6 +4,7 @@ using LogisticCompany;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogisticCompany.Migrations
 {
     [DbContext(typeof(LCDBContext))]
-    partial class LCDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241031120310_morefix")]
+    partial class morefix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace LogisticCompany.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CourierId")
+                    b.Property<int>("CourierId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DeliveryDate")
@@ -86,7 +88,7 @@ namespace LogisticCompany.Migrations
                         .HasPrecision(15, 2)
                         .HasColumnType("decimal(15,2)");
 
-                    b.Property<int?>("RecepientId")
+                    b.Property<int>("RecepientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Sender")
@@ -94,7 +96,7 @@ namespace LogisticCompany.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("TransportId")
+                    b.Property<int>("TransportId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -231,15 +233,21 @@ namespace LogisticCompany.Migrations
                 {
                     b.HasOne("LogisticCompany.Models.Courier", "Courier")
                         .WithMany("Orders")
-                        .HasForeignKey("CourierId");
+                        .HasForeignKey("CourierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LogisticCompany.Models.Recepient", "Recepient")
                         .WithMany("Orders")
-                        .HasForeignKey("RecepientId");
+                        .HasForeignKey("RecepientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LogisticCompany.Models.Tranport", "Transport")
                         .WithMany("Orders")
-                        .HasForeignKey("TransportId");
+                        .HasForeignKey("TransportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Courier");
 

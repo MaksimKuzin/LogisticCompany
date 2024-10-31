@@ -15,7 +15,7 @@ namespace LogisticCompany
 
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Recepient> Recepients { get; set; }
-        public virtual DbSet<Tranport> Tranports { get; set; }
+        public virtual DbSet<Tranport> Transports { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Courier> Couriers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,12 +33,24 @@ namespace LogisticCompany
                 .AutoInclude();
 
             modelBuilder.Entity<Order>()
-                .Navigation(o => o.Tranport)
+                .Navigation(o => o.Transport)
                 .AutoInclude();           
             
             modelBuilder.Entity<Order>()
                 .Navigation(o => o.Warehouses)
-                .AutoInclude();            
+                .AutoInclude();
+
+            modelBuilder.Entity<Order>()
+       .Property(w => w.RecepientId)
+       .IsRequired(false);
+
+            modelBuilder.Entity<Order>()
+       .Property(w => w.TransportId)
+       .IsRequired(false);
+
+            modelBuilder.Entity<Order>()
+       .Property(w => w.CourierId)
+       .IsRequired(false);
 
             // Повторите для других сущностей, если требуется
         }

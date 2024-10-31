@@ -21,12 +21,12 @@ namespace LogisticCompany.Models
         [Precision(15, 2)]
         [Required]
         public decimal Price { get; set; }
-        public int CourierId { get; set; }
-        public int RecepientId { get; set; }
-        public int TransportId { get; set; }
+        public int? CourierId { get; set; }
+        public int? RecepientId { get; set; }
+        public int? TransportId { get; set; }
         public virtual Courier Courier { get; set; }
         public virtual Recepient Recepient { get; set; }
-        public virtual Tranport Tranport { get; set; }
+        public virtual Tranport Transport { get; set; }
         public virtual List<Warehouse> Warehouses { get; set; }
 
 
