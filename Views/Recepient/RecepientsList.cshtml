@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<LogisticCompany.Models.Recepient>
+
 @{
+    ViewData["Title"] = "Получатели";
 }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.BirthYear)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.DeliveryAddress)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </th>
+            <th>
+                <a href="/Recepient/Edit?id=@item.Id">&#9998;</a>
+            </th>
+            <th>
+                <a href="/Recepient/Delete?id=@item.Id">&#128465;</a>
+            </th>
+        </tr>
+    }
+</table>
+<a href="/Recepient/Create" class="btn btn-success">Добавить получателя</a>
