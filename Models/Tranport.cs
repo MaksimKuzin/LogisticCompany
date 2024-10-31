@@ -27,7 +27,7 @@ namespace LogisticCompany.Models
         public string Color { get; set; }
         [DisplayName("Грузоподъемность")]
         [Required]
-        public string Capacity { get; set; }
+        public int Capacity { get; set; }
         public virtual List<Order> Orders { get; set; }
 
     }

@@ -1,5 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<LogisticCompany.Models.Tranport>
+
 @{
+    ViewData["Title"] = "Автопарк";
 }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransportNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.TransportNumber)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Model)
+            </th>
+            <th>
+                @item.RegistrationDate.ToShortDateString()
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Color)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </th>
+            <th>
+                <a href="/Transport/Edit?id=@item.Id">&#9998;</a>
+            </th>
+            <th>
+                <a href="/Transport/Delete?id=@item.Id">&#128465;</a>
+            </th>
+        </tr>
+    }
+</table>
+<a href="/Transport/Create" class="btn btn-success">Добавить автомобиль</a>
