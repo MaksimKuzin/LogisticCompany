@@ -54,3 +54,23 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+
+                // Проверка вместимости (должна быть больше 0)
+                const capacity = parseFloat(document.querySelector("input[name='Capacity']").value.trim());
+                if (isNaN(capacity) || capacity <= 0) {
+                    isValid = false;
+                    alert("Вместимость должна быть больше 0.");
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Остановка отправки формы, если найдена ошибка
+                }
+            });
+        });
+    </script>

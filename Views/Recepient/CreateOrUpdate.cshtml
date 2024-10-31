@@ -62,3 +62,44 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+
+                // Проверка ФИО (должно быть 3 слова)
+                const fio = document.querySelector("input[name='FIO']").value.trim();
+                if (fio.split(" ").length !== 3) {
+                    isValid = false;
+                    alert("Поле ФИО должно содержать три слова.");
+                }
+
+                // Проверка года рождения (не меньше 1901)
+                const birthYear = parseInt(document.querySelector("input[name='BirthYear']").value.trim(), 10);
+                if (isNaN(birthYear) || birthYear < 1901) {
+                    isValid = false;
+                    alert("Год рождения должен быть не меньше 1901.");
+                }
+
+                // Проверка почтового кода (должно быть 6 цифр)
+                const postalCode = document.querySelector("input[name='PostalCode']").value.trim();
+                if (!/^\d{6}$/.test(postalCode)) {
+                    isValid = false;
+                    alert("Почтовый код должен состоять из 6 цифр.");
+                }
+
+                // Проверка телефона (должно быть 12 символов)
+                const phone = document.querySelector("input[name='Phone']").value.trim();
+                if (phone.length !== 12) {
+                    isValid = false;
+                    alert("Поле Телефон должно содержать 12 символов.");
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Остановка отправки формы, если найдена ошибка
+                }
+            });
+        });
+    </script>
