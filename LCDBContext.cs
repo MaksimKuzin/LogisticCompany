@@ -39,22 +39,6 @@ namespace LogisticCompany
             modelBuilder.Entity<Order>()
                 .Navigation(o => o.Warehouses)
                 .AutoInclude();            
-            
-            modelBuilder.Entity<Recepient>()
-                .Navigation(o => o.Orders)
-                .AutoInclude();            
-            
-            modelBuilder.Entity<Tranport>()
-                .Navigation(o => o.Orders)
-                .AutoInclude();            
-            
-            modelBuilder.Entity<Warehouse>()
-                .Navigation(o => o.Orders)
-                .AutoInclude();            
-            
-            modelBuilder.Entity<Courier>()
-                .Navigation(o => o.Orders)
-                .AutoInclude();
 
             // Повторите для других сущностей, если требуется
         }

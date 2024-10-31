@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace LogisticCompany.Models
@@ -6,7 +8,7 @@ namespace LogisticCompany.Models
     public class Courier
     {
         public int Id { get; set; }
-        [DisplayName("FIO")]
+        [DisplayName("ФИО")]
         [MaxLength(30)]
         [Required]
         public string FIO { get; set; }
@@ -16,7 +18,7 @@ namespace LogisticCompany.Models
         [DisplayName("Дата рождения")]
         [Required]
         public DateOnly BirthDate { get; set; }
-        [DisplayName("Дата начала приема на работу")]
+        [DisplayName("Дата приема на работу")]
         [Required]
         public DateOnly EmploymentDate { get; set; }
         [DisplayName("Начало рабочего дня")]

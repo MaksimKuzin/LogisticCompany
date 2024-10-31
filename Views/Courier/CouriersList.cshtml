@@ -1,5 +1,70 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<LogisticCompany.Models.Courier>
+
 @{
+    ViewData["Title"] = "Курьеры";
 }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Passport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmploymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartWorkTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndWorkTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LivingPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Passport)
+            </th>
+            <th>
+                @item.BirthDate.ToShortDateString()
+            </th>
+            <th>
+                @item.EmploymentDate.ToShortDateString()
+            </th>
+            <th>
+                @item.StartWorkTime.ToShortTimeString()
+            </th>
+            <th>
+                @item.EndWorkTime.ToShortTimeString()
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.LivingPlace)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </th>
+            <th>
+                <a href="/Courier/Edit?id=@item.Id">&#9998;</a>
+            </th>
+            <th>
+                <a href="/Courier/Delete?id=@item.Id">&#128465;</a>
+            </th>
+        </tr>
+    }
+</table>
+<a href="/Courier/Create" class="btn btn-success">Добавить курьера</a>

@@ -1,5 +1,88 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LogisticCompany.Models.Courier
+
 @{
+    // Установка заголовка в зависимости от того, является ли модель пустой или нет
+    ViewData["Title"] = Model != null && Model.Id != 0 ? "Изменение курьера" : "Добавление курьера";
+}
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+<div class="container">
+    <form asp-action="@(Model != null && Model.Id != 0 ? "Edit" : "Create")" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="row mb-3">
+            <label asp-for="FIO" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="FIO" class="form-control" />
+                <span asp-validation-for="FIO" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="Passport" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Passport" class="form-control" />
+                <span asp-validation-for="Passport" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="BirthDate" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="BirthDate" type="datetime" class="form-control" formnovalidate />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="EmploymentDate" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EmploymentDate" type="datetime" class="form-control" formnovalidate/>
+                <span asp-validation-for="EmploymentDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="StartWorkTime" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="StartWorkTime" type="time" class="form-control" />
+                <span asp-validation-for="StartWorkTime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="EndWorkTime" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EndWorkTime" type="time" class="form-control" />
+                <span asp-validation-for="EndWorkTime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="LivingPlace" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="LivingPlace" class="form-control" />
+                <span asp-validation-for="LivingPlace" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a asp-action="Index" class="btn btn-secondary ms-2">Отмена</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
