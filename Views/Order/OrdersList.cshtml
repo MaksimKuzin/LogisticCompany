@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Склады";
 }
+
 <table class="table">
     <tr>
         <th>
@@ -63,6 +64,9 @@
             </th>
             <th>
                 <a href="/Order/Delete?id=@item.Id">&#128465;</a>
+            </th>
+            <th>
+                <a href="/Order/CorpDiscount?orderId=@item.Id">10&#37;</a>
             </th>
         </tr>
     }
