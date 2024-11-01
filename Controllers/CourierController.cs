@@ -1,5 +1,6 @@
 ﻿using LogisticCompany.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LogisticCompany.Controllers
 {
@@ -49,6 +50,13 @@ namespace LogisticCompany.Controllers
             _db.Couriers.Remove(courier);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult Search(string searchString)
+        {
+            if (searchString == null || searchString.IsNullOrEmpty())
+                return RedirectToAction("Index");
+            var model = _db.Couriers.Where(x => x.FIO.Contains(searchString));
+            return View("CouriersList", model);
         }
     }
 }

@@ -87,5 +87,20 @@ namespace LogisticCompany.Controllers
             _db.ApplyDiscountToOrder(orderId);
             return RedirectToAction("Index");
         }
+        public IActionResult OrdersByCourierId(int courierId)
+        {
+            var model = _db.Orders.Where(x => x.CourierId == courierId);
+            return View("OrdersList", model);
+        }
+        public IActionResult OrdersByTransportId(int transportId)
+        {
+            var model = _db.Orders.Where(x => x.TransportId == transportId);
+            return View("OrdersList", model);
+        }
+        public IActionResult OrdersByRecipientId(int recipientId)
+        {
+            var model = _db.Orders.Where(x => x.RecepientId == recipientId);
+            return View("OrdersList", model);
+        }
     }
 }

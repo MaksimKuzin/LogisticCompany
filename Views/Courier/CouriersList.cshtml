@@ -3,6 +3,12 @@
 @{
     ViewData["Title"] = "Курьеры";
 }
+<form asp-action="Search">
+    <div class="input-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Поиск по ФИО курьера..." />
+        <button type="submit" class="btn btn-primary">Поиск</button>
+    </div>
+</form>
 <table class="table">
     <tr>
         <th>
@@ -35,7 +41,7 @@
     {
         <tr>
             <th>
-                @Html.DisplayFor(modelItem => item.FIO)
+                <a style="color:black" href="/Order/OrdersByCourierId?courierId=@item.Id">@Html.DisplayFor(modelItem => item.FIO)</a>
             </th>
             <th>
                 @Html.DisplayFor(modelItem => item.Passport)

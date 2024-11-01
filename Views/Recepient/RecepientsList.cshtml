@@ -26,7 +26,7 @@
     {
         <tr>
             <th>
-                @Html.DisplayFor(modelItem => item.FIO)
+                <a style="color:black" href="/Order/OrdersByRecipientId?recipientId=@item.Id">@Html.DisplayFor(modelItem => item.FIO)</a>
             </th>
             <th>
                 @Html.DisplayFor(modelItem => item.BirthYear)

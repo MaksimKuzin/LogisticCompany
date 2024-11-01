@@ -29,7 +29,7 @@
     {
         <tr>
             <th>
-                @Html.DisplayFor(modelItem => item.TransportNumber)
+                <a style="color:black" href="/Order/OrdersByTransportId?transportId=@item.Id">@Html.DisplayFor(modelItem => item.TransportNumber)</a>
             </th>
             <th>
                 @Html.DisplayFor(modelItem => item.Brand)

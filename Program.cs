@@ -2,6 +2,13 @@ using LogisticCompany;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Установите время ожидания сессии
+    options.Cookie.HttpOnly = true; // Для безопасности
+    options.Cookie.IsEssential = true; // Необходим для работы сессии без согласия
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<LCDBContext>();
@@ -22,8 +29,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Role}/{action=Index}/{id?}");
 
 app.Run();

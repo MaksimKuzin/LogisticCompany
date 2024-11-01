@@ -1,8 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero" style="background: url('https://avatars.mds.yandex.net/i?id=47c808dac93b1dbf2b82a771520a3a00_l-12587729-images-thumbs&n=13') no-repeat center center; background-size: cover; height: 60vh; color: white; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="container">
+        <h1 class="display-4">Добро пожаловать в нашу логистическую компанию!</h1>
+        <p class="lead">Мы предоставляем надежные и эффективные решения для вашей логистики.</p>
+    </div>
+</div>
+
+<!-- О компании -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">О компании</h2>
+    <p class="text-center">Наша компания занимается логистикой и грузоперевозками более 10 лет. Мы гарантируем качественное обслуживание и индивидуальный подход к каждому клиенту.</p>
+</div>
+
+<!-- Услуги -->
+<div class="services">
+    <div class="container">
+        <h2 class="text-center mb-4">Наши услуги</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Грузоперевозки</h5>
+                        <p class="card-text">Быстрая и безопасная доставка грузов по всей стране.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Складские услуги</h5>
+                        <p class="card-text">Надежное хранение и управление вашим товаром на складе.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Консультации</h5>
+                        <p class="card-text">Профессиональные советы по вопросам логистики и транспортировки.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Преимущества -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Преимущества</h2>
+    <ul class="list-group">
+        <li class="list-group-item">Доступные цены</li>
+        <li class="list-group-item">Профессиональная команда</li>
+        <li class="list-group-item">Гибкость и индивидуальный подход</li>
+        <li class="list-group-item">Современное оборудование</li>
+    </ul>
 </div>
