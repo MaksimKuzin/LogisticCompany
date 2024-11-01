@@ -102,5 +102,18 @@ namespace LogisticCompany.Controllers
             var model = _db.Orders.Where(x => x.RecepientId == recipientId);
             return View("OrdersList", model);
         }
+        public IActionResult OrdersByDate(DateTime? startDate, DateTime? endDate)
+        {
+            var model = _db.Orders.AsQueryable();
+            if (startDate.HasValue)
+            {
+                model = model.Where(o => o.OrderDate >= startDate.Value);
+            }
+            if (endDate.HasValue)
+            {
+                model = model.Where(o => o.OrderDate <= endDate.Value);
+            }
+            return View("OrdersList", model);
+        }
     }
 }
