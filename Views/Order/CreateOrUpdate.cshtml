@@ -2,6 +2,7 @@
 @{
     // Установка заголовка в зависимости от того, является ли модель пустой или нет
     ViewData["Title"] = Model != null && Model.Id != 0 ? "Изменение заказа" : "Добавление заказа";
+    var role = Context.Session.GetString("UserRole");
 }
 <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
@@ -52,70 +53,73 @@
                 </select>
             </div>
         </div>
+        @if (role == "Admin")
+        {
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Курьер</label>
+                <div class="col-sm-10">
+                    <select name="courierId" class="form-select">
+                        <option value="null">Нет</option>
+                        @foreach (var courier in ViewBag.Couriers)
+                        {
+                            if (Model != null && Model.Id != 0 && courier.Id == Model.CourierId)
+                            {
+                                <option selected value="@courier.Id">@courier.FIO</option>
+                            }
+                            else
+                            {
+                                <option value="@courier.Id">@courier.FIO</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
 
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Курьер</label>
-            <div class="col-sm-10">
-                <select name="courierId" class="form-select">
-                    <option value="null">Нет</option>
-                    @foreach (var courier in ViewBag.Couriers)
-                    {
-                        if (Model != null && Model.Id != 0 && courier.Id == Model.CourierId)
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Транспорт</label>
+                <div class="col-sm-10">
+                    <select name="transportId" class="form-select">
+                        <option value="null">Нет</option>
+                        @foreach (var transport in ViewBag.Transports)
                         {
-                            <option selected value="@courier.Id">@courier.FIO</option>
+                            if (Model != null && Model.Id != 0 && transport.Id == Model.TransportId)
+                            {
+                                <option selected value="@transport.Id">@transport.Brand @transport.Model @transport.TransportNumber</option>
+                            }
+                            else
+                            {
+                                <option value="@transport.Id">@transport.Brand @transport.Model @transport.TransportNumber</option>
+                            }
                         }
-                        else
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Склады</label>
+                <div class="col-sm-10">
+                    <select name="warehouses" class="form-select" multiple>
+                        @foreach (var warehouse in ViewBag.Warehouses)
                         {
-                            <option value="@courier.Id">@courier.FIO</option>
+                            if (Model != null && Model.Id != 0 && Model.Warehouses.Contains(warehouse))
+                            {
+                                <option selected value="@warehouse.Id">@warehouse.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@warehouse.Id">@warehouse.Name</option>
+                            }
                         }
-                    }
-                </select>
+                    </select>
             </div>
         </div>
-
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Транспорт</label>
-            <div class="col-sm-10">
-                <select name="transportId" class="form-select">
-                    <option value="null">Нет</option>
-                    @foreach (var transport in ViewBag.Transports)
-                    {
-                        if (Model != null && Model.Id != 0 && transport.Id == Model.TransportId)
-                        {
-                            <option selected value="@transport.Id">@transport.Brand @transport.Model @transport.TransportNumber</option>
-                        }
-                        else
-                        {
-                            <option value="@transport.Id">@transport.Brand @transport.Model @transport.TransportNumber</option>
-                        }
-                    }
-                </select>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Склады</label>
-            <div class="col-sm-10">
-                <select name="warehouses" class="form-select" multiple>
-                    @foreach (var warehouse in ViewBag.Warehouses)
-                    {
-                        if (Model != null && Model.Id != 0 && Model.Warehouses.Contains(warehouse))
-                        {
-                            <option selected value="@warehouse.Id">@warehouse.Name</option>
-                        }
-                        else
-                        {
-                            <option value="@warehouse.Id">@warehouse.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-        </div>
-
+        }
         <div class="row">
             <div class="col-sm-10 offset-sm-2">
                 <button type="submit" class="btn btn-primary">Сохранить</button>
-                <a asp-action="Index" class="btn btn-secondary ms-2">Отмена</a>
+                <a asp-action="Index"
+                   asp-controller="@(role == "Admin" ? "Order" : "Home")"
+                   class="btn btn-secondary ms-2">Отмена</a>
             </div>
         </div>
     </form>
